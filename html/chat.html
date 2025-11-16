@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - HappyFi</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/chat.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="../index.html" class="logo">HappyFi</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">Events</a></li>
+                    <li><a href="#" class="nav-link">Search Friends</a></li>
+                    <li><a href="chat.html" class="nav-link active">Chat</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Log In</button>
+                    <button class="btn btn-signup">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="chat-container">
+        <!-- Chat List Sidebar -->
+        <aside class="chat-list" id="chatList">
+            <div class="chat-list-header">
+                <h2>Messages</h2>
+                <button class="btn-new-chat" title="New Chat">+</button>
+            </div>
+            <div class="chat-search">
+                <input type="text" placeholder="Search conversations..." id="searchChats">
+            </div>
+            <div class="chat-items">
+                <!-- AI Companion Chat -->
+                <div class="chat-item active" data-chat-id="miru">
+                    <div class="chat-avatar">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Miru&backgroundColor=FFB3D1" alt="Miru AI">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="chat-info">
+                        <div class="chat-header-info">
+                            <h3 class="chat-name">Miru AI Companion</h3>
+                            <span class="chat-time">Now</span>
+                        </div>
+                        <div class="chat-preview">
+                            <p class="chat-last-message">Hi! I'm here to chat whenever you need a friend. How are you feeling today?</p>
+                            <span class="chat-badge">AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example User Chats -->
+                <div class="chat-item" data-chat-id="user1">
+                    <div class="chat-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Sarah">
+                    </div>
+                    <div class="chat-info">
+                        <div class="chat-header-info">
+                            <h3 class="chat-name">Sarah Johnson</h3>
+                            <span class="chat-time">2:45 PM</span>
+                        </div>
+                        <div class="chat-preview">
+                            <p class="chat-last-message">See you at the concert tomorrow! 🎵</p>
+                            <span class="seen-indicator">✓✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-item" data-chat-id="user2">
+                    <div class="chat-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike" alt="Mike">
+                    </div>
+                    <div class="chat-info">
+                        <div class="chat-header-info">
+                            <h3 class="chat-name">Mike Chen</h3>
+                            <span class="chat-time">Yesterday</span>
+                        </div>
+                        <div class="chat-preview">
+                            <p class="chat-last-message">The hiking trip was amazing!</p>
+                            <span class="seen-indicator">✓✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-item" data-chat-id="user3">
+                    <div class="chat-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emily" alt="Emily">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="chat-info">
+                        <div class="chat-header-info">
+                            <h3 class="chat-name">Emily Rodriguez</h3>
+                            <span class="chat-time">Yesterday</span>
+                        </div>
+                        <div class="chat-preview">
+                            <p class="chat-last-message">Thanks for inviting me to the seminar</p>
+                            <span class="unread-count">2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-item" data-chat-id="user4">
+                    <div class="chat-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="Alex">
+                    </div>
+                    <div class="chat-info">
+                        <div class="chat-header-info">
+                            <h3 class="chat-name">Alex Kim</h3>
+                            <span class="chat-time">Nov 14</span>
+                        </div>
+                        <div class="chat-preview">
+                            <p class="chat-last-message">Let's grab coffee this weekend</p>
+                            <span class="seen-indicator">✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Window -->
+        <section class="chat-window" id="chatWindow">
+            <div class="chat-window-header">
+                <button class="btn-back-mobile" id="btnBackMobile">←</button>
+                <div class="chat-contact-info">
+                    <div class="chat-avatar-small">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Miru&backgroundColor=FFB3D1" alt="Miru AI" id="chatHeaderAvatar">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div>
+                        <h3 id="chatHeaderName">Miru AI Companion</h3>
+                        <p class="chat-status" id="chatHeaderStatus">Always here for you</p>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="btn-icon" title="Video Call">📹</button>
+                    <button class="btn-icon" title="Voice Call">📞</button>
+                    <button class="btn-icon" title="More">⋮</button>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be loaded here by JavaScript -->
+            </div>
+
+            <div class="chat-input-container">
+                <button class="btn-icon" title="Attach">📎</button>
+                <input type="text" placeholder="Type a message..." id="messageInput" class="chat-input">
+                <button class="btn-icon" title="Emoji">😊</button>
+                <button class="btn-send" id="btnSend">Send</button>
+            </div>
+        </section>
+
+        <!-- Empty State (shown on mobile when no chat selected) -->
+        <section class="chat-empty" id="chatEmpty">
+            <div class="empty-state">
+                <h2>💬</h2>
+                <h3>Select a chat to start messaging</h3>
+                <p>Connect with friends and our AI companion Miru</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/chat.js"></script>
+</body>
+</html>
