@@ -3,6 +3,32 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Get modal elements
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const loginBtn = document.querySelector('.btn-login');
+    const signupBtn = document.querySelector('.btn-signup');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    const switchModalButtons = document.querySelectorAll('.switch-modal');
+    
+    // Function to open modal
+    function openModal(modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Function to close modal
+    function closeModal(modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Open login modal
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            openModal(loginModal);
+        });
+    
     // Navigation active state handling
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -13,24 +39,96 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
         });
     });
-
-    // Login button handler
-    const loginBtn = document.querySelector('.btn-login');
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
-            console.log('Login button clicked');
-            // Future implementation: redirect to login page or show login modal
-        });
     }
-
-    // Sign Up button handler
-    const signupBtn = document.querySelector('.btn-signup');
+    
+    // Open signup modal
     if (signupBtn) {
         signupBtn.addEventListener('click', function() {
-            console.log('Sign Up button clicked');
-            // Future implementation: redirect to signup page or show signup modal
+            openModal(signupModal);
         });
     }
+    
+    // Close modal when clicking X button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            closeModal(modal);
+        });
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target);
+        }
+    });
+    
+    // Switch between login and signup modals
+    switchModalButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetModalId = this.getAttribute('data-target');
+            const targetModal = document.getElementById(targetModalId);
+            
+            // Close all modals
+            closeModal(loginModal);
+            closeModal(signupModal);
+            
+            // Open target modal
+            setTimeout(() => {
+                openModal(targetModal);
+            }, 300);
+        });
+    });
+    
+    // Handle login form submission
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Login attempt:', { email, password });
+            // Future implementation: Add your login logic here
+            
+            alert('Login functionality will be implemented soon!');
+            closeModal(loginModal);
+        });
+    }
+    
+    // Handle signup form submission
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            console.log('Signup attempt:', { name, email, password });
+            // Future implementation: Add your signup logic here
+            
+            alert('Sign up functionality will be implemented soon!');
+            closeModal(signupModal);
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal(loginModal);
+            closeModal(signupModal);
+        }
+    });
 
     // Join Event button handlers
     const joinButtons = document.querySelectorAll('.btn-join');

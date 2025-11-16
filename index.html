@@ -12,7 +12,7 @@
             <nav class="nav">
                 <a href="#" class="logo">HappyFi</a>
                 <ul class="nav-links">
-                    <li><a href="#" class="nav-link active">HappyFi</a></li>
+                    <li><a href="#" class="nav-link active">Home</a></li>
                     <li><a href="#" class="nav-link">Events</a></li>
                     <li><a href="#" class="nav-link">Search Friends</a></li>
                     <li><a href="#" class="nav-link">Chat</a></li>
@@ -120,6 +120,65 @@
             </div>
         </section>
     </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="loginModal">&times;</span>
+            <div class="modal-header">
+                <h2>Welcome Back!</h2>
+                <p>Login to continue your journey</p>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary-full">Log In</button>
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                    <p>Don't have an account? <a href="#" class="switch-modal" data-target="signupModal">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="signupModal">&times;</span>
+            <div class="modal-header">
+                <h2>Join HappyFi!</h2>
+                <p>Start building meaningful friendships today</p>
+            </div>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary-full">Sign Up</button>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#" class="switch-modal" data-target="loginModal">Log In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
