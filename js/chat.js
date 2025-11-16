@@ -16,7 +16,7 @@ const chatData = {
     },
     user1: {
         name: "Sarah Johnson",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4",
         status: "Online",
         online: false,
         messages: [
@@ -29,7 +29,7 @@ const chatData = {
     },
     user2: {
         name: "Mike Chen",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mike",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mike&backgroundColor=c0aede",
         status: "Last seen yesterday",
         online: false,
         messages: [
@@ -40,7 +40,7 @@ const chatData = {
     },
     user3: {
         name: "Emily Rodriguez",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily&backgroundColor=ffd5dc",
         status: "Online",
         online: true,
         messages: [
@@ -51,7 +51,7 @@ const chatData = {
     },
     user4: {
         name: "Alex Kim",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=d1d4f9",
         status: "Last seen Nov 14",
         online: false,
         messages: [
@@ -73,6 +73,117 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatHeaderName = document.getElementById('chatHeaderName');
     const chatHeaderStatus = document.getElementById('chatHeaderStatus');
     const chatHeaderAvatar = document.getElementById('chatHeaderAvatar');
+    
+    // Get modal elements
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const btnLoginChat = document.getElementById('btnLoginChat');
+    const btnSignupChat = document.getElementById('btnSignupChat');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    const switchModalButtons = document.querySelectorAll('.switch-modal');
+    
+    // Function to open modal
+    function openModal(modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Function to close modal
+    function closeModal(modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Open login modal
+    if (btnLoginChat) {
+        btnLoginChat.addEventListener('click', function() {
+            openModal(loginModal);
+        });
+    }
+    
+    // Open signup modal
+    if (btnSignupChat) {
+        btnSignupChat.addEventListener('click', function() {
+            openModal(signupModal);
+        });
+    }
+    
+    // Close modal when clicking X button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            closeModal(modal);
+        });
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target);
+        }
+    });
+    
+    // Switch between login and signup modals
+    switchModalButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetModalId = this.getAttribute('data-target');
+            const targetModal = document.getElementById(targetModalId);
+            
+            // Close all modals
+            closeModal(loginModal);
+            closeModal(signupModal);
+            
+            // Open target modal
+            setTimeout(() => {
+                openModal(targetModal);
+            }, 300);
+        });
+    });
+    
+    // Handle login form submission
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Login attempt:', { email, password });
+            alert('Login functionality will be implemented soon!');
+            closeModal(loginModal);
+        });
+    }
+    
+    // Handle signup form submission
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            console.log('Signup attempt:', { name, email, password });
+            alert('Sign up functionality will be implemented soon!');
+            closeModal(signupModal);
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal(loginModal);
+            closeModal(signupModal);
+        }
+    });
 
     let currentChatId = 'miru';
 
@@ -180,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (message.sent) {
             const avatar = document.createElement('img');
-            avatar.src = 'https://api.dicebear.com/7.x/avataaars/svg?seed=John&skinColor=light';
+            avatar.src = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Machial&backgroundColor=e0e0e0';
             avatar.alt = 'You';
             avatar.className = 'message-avatar';
             messageDiv.appendChild(avatar);

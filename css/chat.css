@@ -4,6 +4,7 @@
     display: flex;
     height: calc(100vh - 70px);
     background-color: var(--color-light-bg);
+    margin-top: 0;
 }
 
 /* Chat List Sidebar */
@@ -206,6 +207,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--color-white);
+    min-height: 70px;
 }
 
 .btn-back-mobile {
@@ -254,7 +256,8 @@
 
 .chat-actions {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
 }
 
 .btn-icon {
@@ -431,21 +434,29 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .chat-container {
+        height: calc(100vh - 80px);
+        margin-top: 0;
+    }
+
     .chat-list {
         width: 100%;
         border-right: none;
+        height: 100%;
     }
 
     .chat-window,
     .chat-empty {
         display: none;
         position: fixed;
-        top: 70px;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         width: 100%;
-        z-index: 100;
+        height: 100vh;
+        z-index: 1001;
+        background-color: var(--color-white);
     }
 
     .chat-window.active {
@@ -457,7 +468,7 @@
     }
 
     .btn-back-mobile {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
     }
@@ -467,7 +478,8 @@
     }
 
     .chat-actions {
-        display: none;
+        display: flex !important;
+        gap: 2px;
     }
 
     .chat-input-container {
@@ -487,14 +499,43 @@
     }
 
     .chat-window-header {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-xs);
+        flex-wrap: nowrap;
+        min-height: auto;
+    }
+
+    .chat-contact-info {
+        min-width: 0;
+        overflow: hidden;
+        flex: 1;
     }
 
     .chat-contact-info h3 {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-sm);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .chat-status {
         font-size: var(--font-size-xs);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-avatar-small {
+        margin-right: var(--spacing-sm);
+        flex-shrink: 0;
+    }
+
+    .chat-avatar-small img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .chat-messages {
+        padding: var(--spacing-md);
     }
 }
